@@ -8,10 +8,12 @@ import { ProfileFly } from "@/components/ui/profile";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
+  subsets: ["latin", "latin-ext"],
 });
 const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   weight: ["400", "700"],
+  subsets: ["latin", "latin-ext"],
 });
 
 export const metadata: Metadata = {
