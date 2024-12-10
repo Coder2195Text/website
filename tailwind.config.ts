@@ -12,6 +12,16 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: "var(--font-dm-sans)",
+        mono: "var(--font-space-mono)",
+      },
+      width: {
+        screen: "100dvw",
+      },
+      height: {
+        screen: "100dvh",
+      },
     },
   },
   plugins: [],
