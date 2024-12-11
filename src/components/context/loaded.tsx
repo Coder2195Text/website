@@ -1,5 +1,6 @@
 "use client";
 
+import { StateType } from "@/utils/types";
 import {
   createContext,
   FC,
@@ -9,7 +10,11 @@ import {
   useState,
 } from "react";
 
-const LoadedContext = createContext<boolean>(false);
+type ContextType = StateType<boolean>;
+
+const LoadedContext = createContext<ContextType>(
+  undefined as unknown as ContextType
+);
 
 export const LoadedProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, setState] = useState<boolean>(false);
@@ -17,13 +22,15 @@ export const LoadedProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setState(true);
-    });
+    }, 1000);
 
     return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <LoadedContext.Provider value={state}>{children}</LoadedContext.Provider>
+    <LoadedContext.Provider value={[state, setState]}>
+      {children}
+    </LoadedContext.Provider>
   );
 };
 

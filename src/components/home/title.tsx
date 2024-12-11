@@ -5,7 +5,7 @@ import { useLoaded } from "../context/loaded";
 import { motion } from "motion/react";
 
 export const Title: FC = () => {
-  const loaded = useLoaded();
+  const [loaded] = useLoaded();
 
   if (!loaded) return null;
   return (
@@ -26,10 +26,12 @@ export const Title: FC = () => {
     >
       {"Coder2195".split("").map((char, i) => (
         <motion.span
+          className="inline-block"
           key={i}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{
             opacity: 1,
+            y: 0,
             transition: {
               delay: 1.5 + i * 0.1,
             },

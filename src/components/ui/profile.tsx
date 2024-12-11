@@ -3,9 +3,10 @@
 import { FC } from "react";
 import { useLoaded } from "../context/loaded";
 import Image from "next/image";
+import Link from "next/link";
 
 export const ProfileFly: FC = () => {
-  const loaded = useLoaded();
+  const [loaded] = useLoaded();
 
   return (
     <div
@@ -13,7 +14,9 @@ export const ProfileFly: FC = () => {
         !loaded ? "w-24 h-24 top-1/2" : "w-10 h-10 top-7"
       }`}
     >
-      <Image src="/profile.jpg" alt="" fill className="rounded-full" />
+      <Link href="/">
+        <Image src="/profile.jpg" alt="" fill className="rounded-full" />
+      </Link>
     </div>
   );
 };

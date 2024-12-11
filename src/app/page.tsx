@@ -1,10 +1,13 @@
+import { ScrollProvider } from "@/components/context/scroll";
 import { Greet } from "@/components/home/sections";
 import { FC } from "react";
 
 const Home: FC = () => {
   return (
     <div>
-      <Greet />
+      <ScrollProvider pages={5}>
+        <Greet />
+      </ScrollProvider>
     </div>
   );
 };

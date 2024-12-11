@@ -10,7 +10,7 @@ export const Greet: FC = () => {
         <Image
           src="/images/coder.jpg"
           alt=""
-          className="-z-50 brightness-50"
+          className="-z-50 brightness-50 object-cover"
           fill
         />
       </div>

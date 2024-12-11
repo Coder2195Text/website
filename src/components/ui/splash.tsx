@@ -6,7 +6,7 @@ import { FC } from "react";
 import { useLoaded } from "../context/loaded";
 
 export const Splash: FC = () => {
-  const loaded = useLoaded();
+  const [loaded] = useLoaded();
   console.log(loaded);
 
   return (
