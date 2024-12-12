@@ -1,6 +1,4 @@
 "use client";
-
-import { StateType } from "@/utils/types";
 import {
   createContext,
   FC,
@@ -10,7 +8,27 @@ import {
   useState,
 } from "react";
 
-type ContextType = StateType<{ page: number }>;
+type ContextType = {
+  page: number;
+  previousPage: number;
+  lastScroll: number;
+  setPage: (page: number) => void;
+  setPreviousPage: (page: number) => void;
+  setLastScroll: (time: number) => void;
+
+  readonly pages: number;
+};
+
+function setNewPage(
+  { page, pages, setPage, setPreviousPage, setLastScroll }: ContextType,
+  newPage: number
+) {
+  if (newPage >= 0 && newPage < pages) {
+    setPreviousPage(page);
+    setPage(newPage);
+    setLastScroll(Date.now());
+  }
+}
 
 const ScrollContext = createContext<ContextType>(
   undefined as unknown as ContextType
@@ -19,23 +37,31 @@ const ScrollContext = createContext<ContextType>(
 export const ScrollProvider: FC<
   PropsWithChildren<{
     pages: number;
+    delay?: number;
   }>
-> = ({ children, pages }) => {
-  const [state, setState] = useState<{ page: number }>({ page: 0 });
+> = ({ children, pages, delay }) => {
+  const [page, setPage] = useState<number>(0);
+  const [previousPage, setPreviousPage] = useState<number>(0);
   const [lastScroll, setLastScroll] = useState<number>(0);
 
+  const context: ContextType = {
+    pages,
+    page,
+    previousPage,
+    lastScroll,
+    setPage,
+    setPreviousPage,
+    setLastScroll,
+  };
+
   function scrollEvent(e: WheelEvent) {
-    if (Date.now() - lastScroll < 1000) {
+    if (Date.now() - lastScroll < (delay || 500)) {
       return;
     }
     const delta = e.deltaY;
-    const page = state.page + (delta > 0 ? 1 : -1);
+    const newPage = page + (delta > 0 ? 1 : -1);
 
-    if (page >= 0 && page < pages) {
-      console.log(page);
-      setState({ page });
-      setLastScroll(Date.now());
-    }
+    setNewPage(context, newPage);
   }
 
   useEffect(() => {
@@ -46,12 +72,14 @@ export const ScrollProvider: FC<
   });
 
   return (
-    <ScrollContext.Provider value={[state, setState]}>
-      {children}
-    </ScrollContext.Provider>
+    <ScrollContext.Provider value={context}>{children}</ScrollContext.Provider>
   );
 };
 
 export function useScroll() {
-  return useContext(ScrollContext);
+  const context = useContext(ScrollContext);
+  return {
+    ...context,
+    setNewPage: setNewPage.bind(null, context),
+  };
 }

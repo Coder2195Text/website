@@ -1,6 +1,5 @@
 "use client";
 
-import { StateType } from "@/utils/types";
 import {
   createContext,
   FC,
@@ -10,7 +9,7 @@ import {
   useState,
 } from "react";
 
-type ContextType = StateType<boolean>;
+type ContextType = [boolean, (state: boolean) => void];
 
 const LoadedContext = createContext<ContextType>(
   undefined as unknown as ContextType
