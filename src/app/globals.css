@@ -7,6 +7,8 @@ html {
 }
 body {
   @apply bg-black text-white font-sans text-center;
+  background-color: #2d3436;
+  background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
 }
 
 h1 {
@@ -35,4 +37,13 @@ h6 {
 
 .font-mono {
   @apply tracking-tighter;
+}
+
+.bordered {
+  @apply border-1 border-gray-400;
+}
+
+button,
+.button {
+  @apply inline hover:bg-gray-500/50 transition-colors duration-300 bg-none active:bg-gray-700/50;
 }

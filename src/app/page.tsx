@@ -1,15 +1,12 @@
-import { ScrollProvider } from "@/components/context/scroll";
-import { SectionsPage } from "@/components/home/sections";
-import { PageNav } from "@/components/ui/page-nav";
+import { LavaLamp } from "@/components/home/lava-lamp";
+import { Greet } from "@/components/home/sections";
 import { FC } from "react";
 
 const Home: FC = () => {
   return (
     <div>
-      <ScrollProvider pages={5}>
-        <SectionsPage />
-        <PageNav />
-      </ScrollProvider>
+      <Greet />
+      <LavaLamp />
     </div>
   );
 };

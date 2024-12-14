@@ -22,6 +22,10 @@ export default {
       height: {
         screen: "100dvh",
       },
+      borderWidth: {
+        "1": "0.05rem",
+        "2": "0.1rem",
+      },
     },
   },
   plugins: [],

@@ -10,7 +10,7 @@ export const Title: FC = () => {
   if (!loaded) return null;
   return (
     <motion.h1
-      className="font-mono bg-gradient-to-b from-zinc-600/50 to-slate-800/50 backdrop-blur-md bg-opacity-40 rounded-lg p-3"
+      className="font-mono bg-zinc-600/50  backdrop-blur-md bg-opacity-40 rounded-lg p-3"
       initial={{
         opacity: 0,
         y: 50,

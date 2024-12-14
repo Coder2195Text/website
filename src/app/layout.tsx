@@ -4,7 +4,7 @@ import "./globals.css";
 import { FC, PropsWithChildren } from "react";
 import { Splash } from "@/components/ui/splash";
 import { Providers } from "@/components/context/providers";
-import { ProfileFly } from "@/components/ui/profile";
+import { NavBar } from "@/components/ui/nav";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -27,7 +27,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
       <body className={`${dmSans.variable} ${spaceMono.variable}`}>
         <Providers>
           <Splash />
-          <ProfileFly />
+          <NavBar />
           {children}
         </Providers>
       </body>
