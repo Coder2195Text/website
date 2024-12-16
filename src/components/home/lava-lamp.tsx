@@ -2,6 +2,15 @@
 
 import { FC, useEffect, useRef } from "react";
 
+/**
+ * Credits: https://github.com/haljasala/vue-lava-lamp
+ * https://codepen.io/haljasala/pen/pvzbpXd
+ *
+ * Adapted to React
+ * Cool effect btw if you ever see this :3
+ *
+ */
+
 export const LavaLamp: FC = () => {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -93,30 +102,30 @@ export const LavaLamp: FC = () => {
       v_uv.y = 1.0 - v_uv.y; 
       gl_Position = vec4(a_position, 0.0, 1.0);
     }
-  `;
+    `;
 
     const fragmentSrc = `
-precision mediump float;
-varying vec2 v_uv;
+    precision mediump float;
+    varying vec2 v_uv;
 
-uniform vec2 u_resolution;
-uniform bool u_darkMode;
-uniform int u_circleCount;
-uniform vec3 u_circlesColor[6];
-uniform vec3 u_circlesPosRad[6];
-uniform vec2 u_mouse;
+    uniform vec2 u_resolution;
+    uniform bool u_darkMode;
+    uniform int u_circleCount;
+    uniform vec3 u_circlesColor[6];
+    uniform vec3 u_circlesPosRad[6];
+    uniform vec2 u_mouse;
 
-void main(void) {
-    vec2 st = v_uv * u_resolution;
+    void main(void) {
+      vec2 st = v_uv * u_resolution;
 
-    vec3 topColor = vec3(0.0,0.0,0.0);
-    vec3 bottomColor = vec3(0.0, 17.0/255.0, 82.0/255.0);
-    vec3 bgColor = mix(topColor, bottomColor, st.y / u_resolution.y);
+      vec3 topColor = vec3(0.0,0.0,0.0);
+      vec3 bottomColor = vec3(0.0, 17.0/255.0, 82.0/255.0);
+      vec3 bgColor = mix(topColor, bottomColor, st.y / u_resolution.y);
 
-    float fieldSum = 0.0;
-    vec3 weightedColorSum = vec3(0.0);
+      float fieldSum = 0.0;
+      vec3 weightedColorSum = vec3(0.0);
     
-    for (int i = 0; i < 6; i++) {
+      for (int i = 0; i < 6; i++) {
         if (i >= u_circleCount) { break; }
         vec3 posRad = u_circlesPosRad[i];
         vec2 cPos = vec2(posRad.r, posRad.g);
@@ -126,18 +135,18 @@ void main(void) {
         float val = exp(- (dist * dist) / (2.0 * sigma * sigma));
         fieldSum += val;
         weightedColorSum += u_circlesColor[i] * val;
-    }
+      }
 
-    vec3 finalCirclesColor = vec3(0.0);
-    if (fieldSum > 0.0) {
-      finalCirclesColor = weightedColorSum / fieldSum;
-    }
+      vec3 finalCirclesColor = vec3(0.0);
+      if (fieldSum > 0.0) {
+        finalCirclesColor = weightedColorSum / fieldSum;
+      }
 
-    float intensity = pow(fieldSum, 1.4);
-    vec3 finalColor = mix(bgColor, finalCirclesColor, clamp(intensity, 0.0, 1.0));
-    gl_FragColor = vec4(finalColor, 1.0);
-}
-  `;
+      float intensity = pow(fieldSum, 1.4);
+      vec3 finalColor = mix(bgColor, finalCirclesColor, clamp(intensity, 0.0, 1.0));
+      gl_FragColor = vec4(finalColor, 1.0);
+    }
+    `;
 
     function createShader(type: GLenum, source: string) {
       const shader = gl?.createShader(type);
@@ -231,7 +240,13 @@ void main(void) {
       gl?.uniform3fv(u_circlesPosRad, new Float32Array(posRadArr));
 
       gl?.drawArrays(gl.TRIANGLES, 0, 6);
-      requestAnimationFrame(render);
+      const frame = requestAnimationFrame(render);
+
+      return () => {
+        cancelAnimationFrame(frame);
+        window.removeEventListener("resize", resizeCanvas);
+        window.removeEventListener("mousemove", onMouseMove);
+      };
     }
 
     render();

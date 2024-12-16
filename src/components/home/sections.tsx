@@ -19,14 +19,11 @@ export const Greet: FC = () => {
         },
       }}
     >
-      <div className="flex justify-center items-center h-full w-full -z-50 pointer-events-none">
+      <div className="flex justify-between items-center h-full w-full flex-col -z-50 pointer-events-none">
+        <div className="h-4" />
         <Title />
-        {/* <Image
-          src="/images/coder.jpg"
-          alt=""
-          className=" brightness-50 object-cover -z-50"
-          fill
-        /> */}
+
+        <div className="h-4 text-xs text-white/50">Effect by @haljasala</div>
       </div>
     </motion.section>
   );

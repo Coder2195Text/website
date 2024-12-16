@@ -60,7 +60,7 @@ export const NavBar: FC = () => {
         loaded ? "top-0" : "-top-16"
       }`}
     >
-      <div className="backdrop-blur-md border-2 my-3.5 bordered rounded-full h-7 w-40 flex items-stretch justify-between gap-1 p-0.5">
+      <div className="backdrop-blur-md bg-zinc-600/50 my-3.5  rounded-full h-7 w-40 flex items-stretch justify-between gap-1 p-0.5">
         {loaded && links}
       </div>
       <span
@@ -73,9 +73,7 @@ export const NavBar: FC = () => {
             src="/profile.jpg"
             alt=""
             fill
-            className={`rounded-full transition-all duration-200 ${
-              loaded ? "bordered" : ""
-            }`}
+            className="rounded-full transition-all duration-200"
           />
         </Link>
       </span>
