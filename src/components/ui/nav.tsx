@@ -15,7 +15,7 @@ const LINKS: {
 }[] = [
   {
     icon: MdOutlinePerson,
-    href: "/about",
+    href: "/profile",
   },
   {
     icon: FaRegFolderOpen,

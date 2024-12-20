@@ -45,5 +45,5 @@ h6 {
 
 button,
 .button {
-  @apply inline hover:bg-gray-500/50 transition-colors duration-300 bg-none active:bg-gray-700/50;
+  @apply hover:bg-gray-500/50 transition-colors duration-300 bg-none active:bg-gray-700/50;
 }
