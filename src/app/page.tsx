@@ -14,7 +14,7 @@ const Home: FC = () => {
         <div className="h-12" />
         <Title />
         <div>
-          <LinkSuggest />{" "}
+          <LinkSuggest />
           <Link
             href="https://github.com/haljasala"
             target="_blank"

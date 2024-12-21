@@ -19,6 +19,18 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   title: "Coder2195",
   description: "Personal website of Coder2195",
+  openGraph: {
+    type: "website",
+    siteName: "Coder2195",
+    url: "https://coder2195.dev",
+    images: [
+      {
+        width: 1024,
+        height: 1024,
+        url: "https://coder2195.dev/profile.jpg",
+      },
+    ],
+  },
 };
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {
