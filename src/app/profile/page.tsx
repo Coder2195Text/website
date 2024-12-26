@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "Profile page of Coder2195. Check out more about me!",
 };
 
+// height in how many vh
+
 const Profile: FC = () => {
   return (
     <main className="overflow-hidden">

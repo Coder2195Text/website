@@ -3,22 +3,25 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { FC } from "react";
 import { useLoaded } from "../context/loaded";
 import { easeInOut } from "motion";
+import { PROFILE_PAGE_HEIGHT } from "@/utils/constants";
 
 export const Greet: FC = () => {
-  const { scrollY } = useScroll();
+  const { scrollYProgress } = useScroll();
 
-  const x = useTransform(
-    scrollY,
-    [-innerHeight, 0, innerHeight],
-    [innerWidth * 1.5, 0, -innerWidth * 1.5],
+  const rawX = useTransform(
+    scrollYProgress,
+    [-1 / PROFILE_PAGE_HEIGHT, 0, 1 / PROFILE_PAGE_HEIGHT],
+    [50, 0, -50],
     {
       ease: easeInOut,
     }
   );
 
+  const x = useTransform(rawX, (value) => `${value}dvw`);
+
   const opacity = useTransform(
-    scrollY,
-    [-innerHeight / 2, 0, innerHeight / 2],
+    scrollYProgress,
+    [-1 / PROFILE_PAGE_HEIGHT, 0, 1 / PROFILE_PAGE_HEIGHT],
     [0, 1, 0]
   );
 
@@ -39,6 +42,7 @@ export const Greet: FC = () => {
         }}
         style={{
           x,
+
           opacity,
           y: "50%",
         }}
