@@ -1,1 +1,1 @@
-export const PROFILE_PAGE_HEIGHT = 2.5;
+export const PROFILE_PAGE_HEIGHT = 20;

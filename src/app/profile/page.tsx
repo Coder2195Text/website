@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const Profile: FC = () => {
   return (
     <main className="overflow-hidden">
+      <div className="h-screen mt-[2000dvh]"></div>
       <Greet />
-      <div className="h-screen mt-[50dvh]">More stuff</div>
     </main>
   );
 };
