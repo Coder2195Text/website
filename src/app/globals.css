@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 html {
+  color-scheme: dark;
   @apply text-[18px] sm:text-[21px] md:text-[24px] lg:text-[27px] xl:text-[30px] 2xl:text-[33px];
 }
 body {

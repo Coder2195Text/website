@@ -1,4 +1,5 @@
 import { Greet } from "@/components/profile/greet";
+import { Journey, JourneyIntro } from "@/components/profile/journey";
 import { Metadata } from "next";
 import { FC } from "react";
 
@@ -14,6 +15,8 @@ const Profile: FC = () => {
     <main className="overflow-hidden">
       <div className="h-screen mt-[2000dvh]"></div>
       <Greet />
+      <JourneyIntro />
+      <Journey />
     </main>
   );
 };
