@@ -4,7 +4,8 @@
 
 html {
   color-scheme: dark;
-  @apply text-[18px] sm:text-[21px] md:text-[24px] lg:text-[27px] xl:text-[30px] 2xl:text-[33px];
+
+  @apply text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] xl:text-[26px] 2xl:text-[28px];
 }
 body {
   @apply bg-black text-white font-sans text-center;

@@ -35,9 +35,9 @@ export const Greet: FC = () => {
       animate="animate"
       variants={{
         hidden: { opacity: 0 },
-        animate: { opacity: 1, transition: { duration: 0.5, delay: 1.75 } },
+        animate: { opacity: 1, transition: { duration: 1, delay: 0.5 } },
       }}
-      className="w-screen h-screen flex justify-center items-center"
+      className="w-screen h-screen pointer-events-none flex justify-center items-center"
     >
       <motion.h1
         style={{

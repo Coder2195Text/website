@@ -56,7 +56,7 @@ export const NavBar: FC = () => {
 
   return (
     <nav
-      className={`fixed flex justify-center w-screen transition-[top] duration-500 ${
+      className={`fixed flex justify-center w-full transition-[top] duration-500 z-10${
         loaded ? "top-0" : "-top-16"
       }`}
     >
