@@ -16,7 +16,7 @@ type EntryType = {
   href?: string;
   target?: LinkTarget;
 };
-// @ts-expect-error not done lol
+
 const JOURNEY_ENTRIES: {
   [year in Year]: EntryType[];
 } = {
@@ -103,6 +103,12 @@ const JOURNEY_ENTRIES: {
       href: "https://docs.microsoft.com/en-us/dotnet/csharp/",
       target: "_blank",
     },
+    {
+      title: "Installed Ubuntu",
+      icon: "/logos/ubuntu.svg",
+      href: "https://ubuntu.com/",
+      target: "_blank",
+    },
   ],
   "2023": [
     {
@@ -111,18 +117,24 @@ const JOURNEY_ENTRIES: {
       href: "https://www.rust-lang.org/",
       target: "_blank",
     },
-
-    {
-      title:
-        "Made a volunteer club + full stack website (Left due to leadership supporting pay-to-win)",
-      icon: "/logos/bthsaction.svg",
-      href: "https://github.com/bths-action/website/tree/6cbb411abaa60eb39cb7f4d851017fc314fe1c2c",
-      target: "_blank",
-    },
     {
       title: "Learned Godot",
       icon: "/logos/godot.svg",
       href: "https://godotengine.org/",
+      target: "_blank",
+    },
+  ],
+  "2024": [
+    {
+      title: "Installed EndeavourOS (I use Arch btw)",
+      icon: "/logos/endeavouros.svg",
+      href: "https://endeavouros.com/",
+      target: "_blank",
+    },
+    {
+      title: "RIT Bound - GDD Major",
+      icon: "/logos/rit.svg",
+      href: "https://www.rit.edu/",
       target: "_blank",
     },
   ],
