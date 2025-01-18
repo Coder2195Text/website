@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "yarn",
+      "type": "shell",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "command": "export PATH=/home/coder2195/.nvm/versions/node/v23.5.0/bin/:$PATH && yarn dev",
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false
+      }
+    }
+  ]
+}
