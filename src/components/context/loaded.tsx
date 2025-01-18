@@ -19,7 +19,11 @@ const LoadedProvider: FC<PropsWithChildren> = ({ children }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true);
+    const timeout = setTimeout(() => {
+      setLoaded(true);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (

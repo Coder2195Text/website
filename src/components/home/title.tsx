@@ -16,6 +16,7 @@ const Title: FC = () => {
               strings: "Coder2195",
               deleteSpeed: 100000000,
               autoStart: true,
+              cursorClassName: "Typewriter__cursor !-mx-2.5",
             }}
           />
         )}

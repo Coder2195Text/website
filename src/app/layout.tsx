@@ -32,9 +32,11 @@ export default function RootLayout({
       <body className={`${spaceMono.variable} ${dmSans.variable} antialiased`}>
         <Providers>
           <Navbar />
-          <div className="mx-auto w-full max-w-5xl h-screen overflow-auto pt-16 p-2">
-            {children}
-          </div>
+          <div className="h-screen overflow-auto w-full">
+            <div className="mx-auto w-full max-w-5xl overflow-auto pt-16 p-2">
+              {children}
+            </div>
+          </div> 
           <Splash />
         </Providers>
       </body>
