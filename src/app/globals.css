@@ -35,7 +35,8 @@ body {
   @apply bg-[#0a0a0a] text-[#ededed] font-sans;
 }
 
-.bordered {
+.bordered,
+.button {
   @apply border-1 border-gray-500/50;
 }
 
