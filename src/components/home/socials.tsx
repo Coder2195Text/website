@@ -1,12 +1,11 @@
 "use client";
-
 import { motion } from "motion/react";
 import Link from "next/link";
 import { FC } from "react";
 import { IconType } from "react-icons";
 import { FaGithub, FaRedditAlien, FaYoutube } from "react-icons/fa";
 import { useLoaded } from "../context/loaded";
-import { BsEnvelope } from "react-icons/bs";
+import { PiEnvelopeLight } from "react-icons/pi";
 
 type Social = {
   name: string;
@@ -33,7 +32,7 @@ const SOCIALS: Social[] = [
   {
     name: "Email",
     url: "mailto:coder2195mail@gmail.com",
-    icon: BsEnvelope,
+    icon: PiEnvelopeLight,
   },
 ];
 
@@ -47,28 +46,28 @@ const Socials: FC = () => {
           SOCIALS.map((social, index) => {
             const Icon = social.icon;
             return (
-              <motion.div
+              <Link
+                href={social.url}
                 key={index}
-                initial={{
-                  scale: 0,
-                }}
-                animate={{
-                  scale: 1,
-                  transition: {
-                    type: "spring",
-                    delay: index * 0.2 + 1.5,
-                    duration: 0.5,
-                  },
-                }}
+                target="_blank"
+                className="hover:scale-125 transition-all duration-300 "
               >
-                <Link
-                  href={social.url}
-                  target="_blank"
-                  className="hover:scale-125 transition-all duration-300 "
+                <motion.div
+                  initial={{
+                    scale: 0,
+                  }}
+                  animate={{
+                    scale: 1,
+                    transition: {
+                      type: "spring",
+                      delay: index * 0.2 + 1.5,
+                      duration: 0.5,
+                    },
+                  }}
                 >
                   <Icon size={48} className="w-12 h-12" />
-                </Link>
-              </motion.div>
+                </motion.div>
+              </Link>
             );
           })}
       </div>

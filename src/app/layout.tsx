@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/ui/navbar";
 import Providers from "@/components/context";
 import Splash from "@/components/ui/splash";
+import PageTransition from "@/components/ui/transition";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -32,11 +33,12 @@ export default function RootLayout({
       <body className={`${spaceMono.variable} ${dmSans.variable} antialiased`}>
         <Providers>
           <Navbar />
-          <div className="h-screen overflow-auto w-full">
+
+          <PageTransition>
             <div className="mx-auto w-full max-w-5xl overflow-auto pt-16 p-2">
               {children}
             </div>
-          </div> 
+          </PageTransition>
           <Splash />
         </Providers>
       </body>

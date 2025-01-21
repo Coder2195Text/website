@@ -24,7 +24,7 @@ export const NAV_LINKS: NavLink[] = [
     name: "Profile",
     href: "/profile",
     icon: IoPersonCircle,
-    description: "Personal information and links.",
+    description: "Learn more about me and my skills.",
   },
   {
     name: "Projects",
@@ -42,8 +42,8 @@ export const NAV_LINKS: NavLink[] = [
 
 const Navbar: FC = () => {
   return (
-    <div className="fixed w-full p-2 top-0">
-      <nav className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden">
+    <div className="fixed w-full p-2 top-0 z-40">
+      <nav className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden backdrop-blur-md ">
         <Link href="/">
           <Image
             src="/icon.png"

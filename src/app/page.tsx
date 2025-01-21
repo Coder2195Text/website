@@ -7,7 +7,9 @@ const Home: FC = () => {
   return (
     <main>
       <Title />
-
+      <div className="m-6 mb-8 text-sm font-extrabold">
+        The master of unfinished projects.
+      </div>
       <HomeLinks />
       <Socials />
     </main>
