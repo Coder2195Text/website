@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 
 const Splash: FC = () => {
-  const [loaded] = useLoaded();
+  const { loaded } = useLoaded();
 
   return (
     <AnimatePresence>

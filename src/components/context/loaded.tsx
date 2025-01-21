@@ -11,7 +11,10 @@ import {
   useState,
 } from "react";
 
-type Context = [boolean, Dispatch<SetStateAction<boolean>>];
+type Context = {
+  loaded: boolean;
+  setLoaded: Dispatch<SetStateAction<boolean>>;
+};
 
 const LoadedContext = createContext<Context>(null! as Context);
 
@@ -27,7 +30,7 @@ const LoadedProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    <LoadedContext.Provider value={[loaded, setLoaded]}>
+    <LoadedContext.Provider value={{ loaded, setLoaded }}>
       {children}
     </LoadedContext.Provider>
   );

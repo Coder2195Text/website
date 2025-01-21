@@ -5,7 +5,7 @@ import TypewriterComponent from "typewriter-effect";
 import { useLoaded } from "../context/loaded";
 
 const Title: FC = () => {
-  const [loaded] = useLoaded();
+  const { loaded } = useLoaded();
   return (
     <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
       Hello, I&apos;m{" "}
