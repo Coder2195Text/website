@@ -8,6 +8,12 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        marquee: "marquee 25s linear infinite",
+        marquee2: "marquee2 25s linear infinite",
+        marquee3: "marquee3 25s linear infinite",
+        marquee4: "marquee4 25s linear infinite",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

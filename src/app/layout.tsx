@@ -35,7 +35,7 @@ export default function RootLayout({
           <Navbar />
 
           <PageTransition>
-            <div className="mx-auto w-full max-w-5xl overflow-auto pt-16 p-2">
+            <div className="mx-auto w-full max-w-5xl overflow-auto pt-16 p-2 min-h-[100dvh]">
               {children}
             </div>
           </PageTransition>
