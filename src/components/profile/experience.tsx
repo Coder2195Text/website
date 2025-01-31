@@ -1,144 +1,104 @@
 "use client";
-import { motion } from "motion/react";
-import { FC, ReactNode, useMemo } from "react";
-import { useLoaded } from "../context/loaded";
-import { IoChevronForwardSharp } from "react-icons/io5";
-import Image from "next/image";
 
-type ExperienceEntry = {
-  icon: string;
+import { motion } from "motion/react";
+import { FC, ReactNode } from "react";
+import { IoChevronForwardSharp } from "react-icons/io5";
+import { useLoaded } from "../context/loaded";
+import { FaRegBuilding } from "react-icons/fa";
+import { BsClockHistory } from "react-icons/bs";
+import Link from "../ui/link";
+
+enum ExperienceType {
+  WORK = "work",
+  CERTIFICATION = "certification",
+  INTERNSHIP = "internship",
+  VOLUNTEER = "volunteer",
+}
+
+type Experience = {
+  type: ExperienceType;
   title: ReactNode;
-  note: ReactNode;
+  company: ReactNode;
+  date: string;
+  description: ReactNode;
 };
 
-const EXPERIENCE_ENTRIES: ExperienceEntry[] = [
+const EXPERIENCES: Experience[] = [
   {
-    icon: "/logos/csharp.svg",
-    title: "C#",
-    note: "See sharp. Why I need glasses.",
-  },
-  {
-    icon: "/logos/css.svg",
-    title: "CSS",
-    note: "Write in with style.",
-  },
-  {
-    icon: "/logos/endeavouros.svg",
-    title: "EndeavourOS",
-    note: "Still using Arch btw.",
-  },
-  {
-    icon: "/logos/git.svg",
-    title: "Git",
-    note: "Just commit.",
-  },
-  {
-    icon: "/logos/godot.svg",
-    title: "Godot",
-    note: "Go. Dot.",
-  },
-  {
-    icon: "/logos/html.svg",
-    title: "HTML",
-    note: "Marked up for the web.",
-  },
-  {
-    icon: "/logos/javascript.svg",
-    title: "JavaScript",
-    note: "Yea, Typescript will always be better.",
-  },
-  {
-    icon: "/logos/nextjs.svg",
-    title: "NextJS",
-    note: "Truly next level. This site uses NextJS.",
-  },
-  {
-    icon: "/logos/nodejs.svg",
-    title: "NodeJS",
-    note: "WTF is a PHP?",
-  },
-  {
-    icon: "/logos/prisma.svg",
-    title: "Prisma",
-    note: "Which insane fella writes raw queries?",
-  },
-  {
-    icon: "/logos/python.svg",
-    title: "Python",
-    note: (
+    type: ExperienceType.INTERNSHIP,
+    title: "Summer Design Institute Game Design Internship",
+    company: (
       <>
-        I&apos;ll <code>pass</code> on the snake.
+        <Link href="https://www.schools.nyc.gov/" external>
+          NYCDOE
+        </Link>
+        {" + "}
+
+        <Link href="https://www.schools.nyc.gov/" external>
+          MetaBronx
+        </Link>
+        {" + "}
+
+        <Link href="https://www.schools.nyc.gov/" external>
+          The Glass Files
+        </Link>
       </>
     ),
+    date: "Summer 2024",
+    description:
+      "In this game design internship, we covered aspects of game design, entrepreneurship, and marketing. I created a game that was presented at the end of the internship.",
   },
   {
-    icon: "/logos/react.svg",
-    title: "React",
-    note: "Why so many libraries involving atoms?",
-  },
-  {
-    icon: "/logos/rust.svg",
-    title: "Rust",
-    note: "Blazingly fast traits and confusion.",
-  },
-  {
-    icon: "/logos/scratch.svg",
-    title: "Scratch",
-    note: "Where it all began.",
-  },
-  {
-    title: "TailwindCSS",
-    icon: "/logos/tailwindcss.svg",
-    note: "CSS in my files? No way!",
-  },
-  {
-    icon: "/logos/typescript.svg",
-    title: "TypeScript",
-    note: "Gigachad version of JavaScript.",
-  },
-  {
-    icon: "/logos/ubuntu.svg",
-    title: "Ubuntu",
-    note: "Windows broke on me and I had a USB stick.",
+    title: "Founder & Developer of Action",
+    company: (
+      <>
+        <Link href="https://www.schools.nyc.gov/" external>
+          BTHS Action
+        </Link>
+      </>
+    ),
+    type: ExperienceType.VOLUNTEER,
+    date: "Summer 2023 - Spring 2024",
+    description:
+      "I developed and founded BTHS Action and its website, a volunteer club at my school dedicated to providing fair and legitimate opportunities to students to perform volunteer work. Resigned due to conflict with new executives about the core objective of the club.",
   },
 ];
 
-function shuffleAndSplit(entries: ExperienceEntry[]): ExperienceEntry[][] {
-  entries = entries.slice();
-
-  const arrays: ExperienceEntry[][] = Array.from({ length: 3 }, () => []);
-
-  let count = 0;
-
-  while (entries.length) {
-    const index = Math.floor(Math.random() * entries.length);
-    const entry = entries.splice(index, 1)[0];
-    arrays[count % 3].push(entry);
-    count++;
-  }
-  return arrays;
-}
-
-const ExperienceItem: FC<{ entry: ExperienceEntry }> = ({ entry }) => {
+const ExperienceItem: FC<{
+  experience: Experience;
+  index: number;
+}> = ({ experience, index }) => {
   return (
-    <div className="inline-flex items-center bg-gray-500/50 p-2 rounded m-2">
-      <div className="w-8 aspect-square rounded-md relative">
-        <Image src={entry.icon} fill alt="" />
+    <motion.div
+      className="p-4 rounded-md bordered"
+      variants={{
+        hidden: {
+          opacity: 0,
+        },
+        visible: {
+          opacity: 1,
+          transition: {
+            delay: 1.2 + index * 0.4,
+          },
+        },
+      }}
+    >
+      <h4 className="font-bold">{experience.title}</h4>
+      <div className="flex p-2">
+        <p className=" w-1/2">
+          <FaRegBuilding className="inline mr-2 w-4 h-4" /> {experience.company}
+        </p>
+        <p className="w-1/2">
+          <BsClockHistory className="inline mr-2 w-4 h-4" /> {experience.date}
+        </p>
       </div>
-      <div className="flex flex-col ml-2">
-        <h6>{entry.title}</h6>
-        <p className="text-xs -mt-1">{entry.note}</p>
-      </div>
-    </div>
+      <p>{experience.description}</p>
+    </motion.div>
   );
 };
 
 const Experience: FC = () => {
   const { loaded } = useLoaded();
-
-  const splitEntries = useMemo(() => shuffleAndSplit(EXPERIENCE_ENTRIES), []);
-
-  console.log(splitEntries);
 
   if (!loaded) return;
 
@@ -160,9 +120,10 @@ const Experience: FC = () => {
           },
         },
       }}
+      className="my-6"
     >
       <h3 className="flex">
-        My Experience
+        Experience & Certifications
         <motion.div
           className="inline-block "
           variants={{
@@ -179,47 +140,12 @@ const Experience: FC = () => {
         >
           <IoChevronForwardSharp className="w-8 h-8 mx-4" />
         </motion.div>
-      </h3>
-
-      <motion.div
-        variants={{
-          hidden: {
-            opacity: 0,
-          },
-          visible: {
-            opacity: 1,
-            transition: {
-              delay: 1.5,
-              duration: 1,
-            },
-          },
-        }}
-        className="bordered rounded-lg my-4 w-full"
-      >
-        {splitEntries.map((entries, index) => {
-          const list = entries.map((entry, index) => (
-            <ExperienceItem key={index} entry={entry} />
-          ));
-          return (
-            <div key={index} className=" overflow-x-hidden flex relative">
-              <div
-                className={`${
-                  index % 2 === 0 ? "animate-marquee" : "animate-marquee3"
-                } whitespace-nowrap`}
-              >
-                {list}
-              </div>
-              <div
-                className={`absolute top-0 ${
-                  index % 2 === 0 ? "animate-marquee2" : "animate-marquee4"
-                } whitespace-nowrap`}
-              >
-                {list}
-              </div>
-            </div>
-          );
-        })}
-      </motion.div>
+      </h3>{" "}
+      <div className=" rounded-lg my-4 flex gap-2 flex-col w-full relative">
+        {EXPERIENCES.map((experience, index) => (
+          <ExperienceItem key={index} experience={experience} index={index} />
+        ))}
+      </div>
     </motion.div>
   );
 };

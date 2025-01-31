@@ -1,4 +1,5 @@
 import Experience from "@/components/profile/experience";
+import Skills from "@/components/profile/skills";
 import { Metadata } from "next";
 import { FC } from "react";
 
@@ -16,6 +17,7 @@ const Profile: FC = () => {
       <h6 className="my-4">
         Hey! Amber here, I&apos;m a software engineer, gamer and railfanner.
       </h6>
+      <Skills />
       <Experience />
     </main>
   );

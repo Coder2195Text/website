@@ -82,3 +82,17 @@ body {
 .button {
   @apply bg-gray-500 bg-opacity-0 hover:bg-opacity-40 active:bg-opacity-30 transition-colors duration-300;
 }
+
+.link {
+  background: linear-gradient(to right, #fff, #fff),
+    linear-gradient(to right, rgb(13 148 136), rgb(45 212 191));
+  background-size: 100% 0.1em, 0 0.1em;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms;
+}
+
+.link:hover,
+.link:focus {
+  background-size: 0 0.1em, 100% 0.1em;
+}
