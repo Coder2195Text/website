@@ -159,6 +159,7 @@ const Skills: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       variants={{
         hidden: {
           opacity: 0,

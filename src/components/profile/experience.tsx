@@ -74,11 +74,17 @@ const ExperienceItem: FC<{
       variants={{
         hidden: {
           opacity: 0,
+          scale: 0,
         },
         visible: {
+          scale: 1,
           opacity: 1,
+
           transition: {
-            delay: 1.2 + index * 0.4,
+            type: "spring",
+            delay: 1.2 + index * 0.5,
+            bounce: 0.4,
+            duration: 0.75,
           },
         },
       }}
@@ -106,6 +112,7 @@ const Experience: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
+      viewport={{ once: true }}
       variants={{
         hidden: {
           opacity: 0,
@@ -141,7 +148,7 @@ const Experience: FC = () => {
           <IoChevronForwardSharp className="w-8 h-8 mx-4" />
         </motion.div>
       </h3>{" "}
-      <div className=" rounded-lg my-4 flex gap-2 flex-col w-full relative">
+      <div className=" rounded-lg my-4 flex gap-2 flex-col w-full relative  overflow-visible">
         {EXPERIENCES.map((experience, index) => (
           <ExperienceItem key={index} experience={experience} index={index} />
         ))}

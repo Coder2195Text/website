@@ -24,7 +24,7 @@ const PageTransition: FC<PropsWithChildren> = ({ children }) => {
         );
       }}
     >
-      <div ref={ref} className="h-screen overflow-auto w-full">
+      <div ref={ref} className="h-[100dvh] overflow-auto w-full">
         {children}
       </div>
     </TransitionRouter>
