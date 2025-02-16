@@ -33,7 +33,6 @@ const EXPERIENCES: Experience[] = [
           NYCDOE
         </Link>
         {" + "}
-
         <Link href="https://www.schools.nyc.gov/" external>
           MetaBronx
         </Link>
@@ -52,7 +51,7 @@ const EXPERIENCES: Experience[] = [
     title: "Founder & Developer of Action",
     company: (
       <>
-        <Link href="https://www.schools.nyc.gov/" external>
+        <Link href="https://bthsaction.org/" external>
           BTHS Action
         </Link>
       </>
@@ -127,7 +126,7 @@ const Experience: FC = () => {
           },
         },
       }}
-      className="my-6"
+      className="my-10"
     >
       <h3 className="flex">
         Experience & Certifications

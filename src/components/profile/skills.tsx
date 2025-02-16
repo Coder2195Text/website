@@ -174,7 +174,7 @@ const Skills: FC = () => {
           },
         },
       }}
-      className="my-6"
+      className="my-10 "
     >
       <h3 className="flex">
         My Skillset

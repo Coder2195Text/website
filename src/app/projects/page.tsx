@@ -6,7 +6,10 @@ export const metadata: Metadata = {
   description: "Explore my creations and contributions.",
 };
 
+export const revalidate = 300;
+
 const Projects: FC = () => {
+  // const projects = await fetch
   return (
     <main>
       <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
