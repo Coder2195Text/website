@@ -1,3 +1,4 @@
+// import { hygraph } from "@/graphql";
 import { Metadata } from "next";
 import { FC } from "react";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export const revalidate = 300;
 
 const Projects: FC = () => {
-  // const projects = await fetch
+  // const data = hygraph.request(documents)
   return (
     <main>
       <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">

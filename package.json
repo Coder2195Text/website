@@ -6,13 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
-    "@apollo/server": "^4.11.3",
-    "@chakra-ui/react": "^3.4.0",
-    "@emotion/react": "^11.14.0",
     "graphql": "^16.10.0",
+    "graphql-request": "^7.1.2",
     "motion": "^11.18.1",
     "next": "15.1.5",
     "next-transition-router": "^0.2.7",
@@ -23,6 +22,9 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@graphql-codegen/cli": "5.0.5",
+    "@graphql-codegen/typescript": "4.1.5",
+    "@graphql-codegen/typescript-resolvers": "^4.4.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
