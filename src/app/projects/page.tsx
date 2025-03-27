@@ -1,6 +1,5 @@
 // import { hygraph } from "@/graphql";
 import { GET_PROJECTS, hygraph } from "@/graphql";
-import { gql } from "graphql-request";
 import { Metadata } from "next";
 import { FC } from "react";
 
