@@ -7,7 +7,7 @@
       "runOptions": {
         "runOn": "folderOpen"
       },
-      "command": "export PATH=/home/coder2195/.nvm/versions/node/v23.5.0/bin/:$PATH && yarn dev",
+      "command": "yarn dev",
       "presentation": {
         "echo": true,
         "reveal": "never",
