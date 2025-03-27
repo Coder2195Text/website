@@ -19,7 +19,7 @@ type Experience = {
   type: ExperienceType;
   title: ReactNode;
   company: ReactNode;
-  date: stringe
+  date: string;
   description: ReactNode;
 };
 
