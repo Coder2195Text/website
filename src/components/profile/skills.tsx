@@ -211,8 +211,8 @@ const Skills: FC = () => {
         }}
         className="bordered rounded-lg my-4 py-2 w-full relative"
       >
-        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-black pointer-events-none to-transparent z-30" />
-        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-black pointer-events-none to-transparent z-30" />
+        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-black pointer-events-none to-transparent rounded-l-lg z-30" />
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-black pointer-events-none to-transparent rounded-r-lg z-30" />
         {splitEntries.map((entries, index) => {
           const list = entries.map((entry, index) => (
             <Skill key={index} entry={entry} />
@@ -220,16 +220,14 @@ const Skills: FC = () => {
           return (
             <div key={index} className=" overflow-x-hidden flex relative">
               <div
-                className={`${
-                  index % 2 === 0 ? "animate-marquee" : "animate-marquee3"
-                } whitespace-nowrap`}
+                className={`${index % 2 === 0 ? "animate-marquee" : "animate-marquee3"
+                  } whitespace-nowrap`}
               >
                 {list}
               </div>
               <div
-                className={`absolute top-0 ${
-                  index % 2 === 0 ? "animate-marquee2" : "animate-marquee4"
-                } whitespace-nowrap`}
+                className={`absolute top-0 ${index % 2 === 0 ? "animate-marquee2" : "animate-marquee4"
+                  } whitespace-nowrap`}
               >
                 {list}
               </div>

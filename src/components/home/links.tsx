@@ -19,7 +19,7 @@ const HomeLink: FC<{
       animate={{
         opacity: 1,
         transition: {
-          delay: idx * 0.2 + 0.8,
+          delay: idx * 0.2 + 1.8,
           duration: 0.5,
           ease: easeInOut,
         },

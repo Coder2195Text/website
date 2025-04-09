@@ -80,7 +80,7 @@ const Navbar: FC = () => {
             <Link
               href={link.href}
               key={link.name}
-              className="flex gap-2 justify-end items-end button  p-1 m-1 rounded-md"
+              className="flex gap-1 justify-end items-end button  p-1 m-1 rounded-md"
             >
               <link.icon className="w-5 h-5" />
               <span className="text-sm hidden xs:inline-block">

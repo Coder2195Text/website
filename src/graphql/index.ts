@@ -8,11 +8,10 @@ query GetProject {
   projects {
     id
     title
-    repo
-    description {
-      markdown
+    coverImage {
+      url
     }
-    date
+    slug
   }
 }
 `)

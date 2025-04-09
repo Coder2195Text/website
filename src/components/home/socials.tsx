@@ -60,7 +60,7 @@ const Socials: FC = () => {
                     scale: 1,
                     transition: {
                       type: "spring",
-                      delay: index * 0.2 + 1.5,
+                      delay: index * 0.2 + 2.5,
                       duration: 0.5,
                     },
                   }}

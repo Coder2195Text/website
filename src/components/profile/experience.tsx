@@ -26,6 +26,17 @@ type Experience = {
 const EXPERIENCES: Experience[] = [
   {
     type: ExperienceType.INTERNSHIP,
+    title: "Pathfinders CS4ALL Internship",
+    company: (
+      <>
+        <Link href="https://cerbrec.com/" external>Cerbrec</Link>
+      </>
+    ),
+    date: "Spring 2025",
+    description: "We worked on helping improve their AI app that is used in ethical means. We primarily worked on organizing graph features and designing an algorithm and a explorer to test these out.",
+  },
+  {
+    type: ExperienceType.INTERNSHIP,
     title: "Summer Design Institute Game Design Internship",
     company: (
       <>

@@ -6,6 +6,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -15,14 +16,17 @@
   0% {
     transform: translateX(100%);
   }
+
   100% {
     transform: translateX(0%);
   }
 }
+
 @keyframes marquee3 {
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -32,6 +36,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(0%);
   }
@@ -39,11 +44,11 @@
 
 :root {
   color-scheme: dark;
-  @apply text-[14px] xs:text-[15px] sm:text-[16px] md:text-[17px] lg:text-[18px] xl:text-[19px] 2xl:text-[20px];
+  @apply text-[20px];
 }
 
 * {
-  @apply border-gray-500/50;
+  @apply border-gray-500/50 tracking-tight;
 }
 
 h1 {
@@ -85,7 +90,7 @@ body {
 
 .link {
   background: linear-gradient(to right, #fff, #fff),
-    linear-gradient(to right, rgb(13 148 136), rgb(45 212 191));
+    linear-gradient(to right, #cba6f7, #b4befe);
   background-size: 100% 0.1em, 0 0.1em;
   background-position: 100% 100%, 0 100%;
   background-repeat: no-repeat;
@@ -95,5 +100,5 @@ body {
 .link:hover,
 .link:focus {
   background-size: 0 0.1em, 100% 0.1em;
-  @apply text-teal-500;
+  @apply text-[#cba6f7];
 }

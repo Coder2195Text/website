@@ -1,3 +1,4 @@
+import AboutMe from "@/components/profile/about-me";
 import Experience from "@/components/profile/experience";
 import Skills from "@/components/profile/skills";
 import { Metadata } from "next";
@@ -16,9 +17,7 @@ const Profile: FC = () => {
       <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
         Profile
       </h1>
-      <h6 className="my-4">
-        Hey! Amber here, I&apos;m a software engineer, gamer and railfanner.
-      </h6>
+      <AboutMe />
       <Skills />
       <Experience />
     </main>
