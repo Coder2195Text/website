@@ -128,7 +128,7 @@ function shuffleAndSplit(entries: SkillEntry[]): SkillEntry[][] {
 
 const Skill: FC<{ entry: SkillEntry }> = ({ entry }) => {
   return (
-    <div className="inline-flex items-center bg-gray-500/50 p-2 rounded m-2">
+    <div className="inline-flex items-center bg-mocha-surface0 p-2 rounded-sm m-2">
       <div className="w-8 aspect-square rounded-md relative">
         <Image
           src={entry.icon}
@@ -159,7 +159,7 @@ const Skills: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.5 }}
       variants={{
         hidden: {
           opacity: 0,
@@ -170,11 +170,10 @@ const Skills: FC = () => {
           y: 0,
           transition: {
             type: "spring",
-            delay: 0.5,
           },
         },
       }}
-      className="my-10 "
+      className="min-h-screen"
     >
       <h3 className="flex">
         My Skillset
@@ -187,7 +186,7 @@ const Skills: FC = () => {
             visible: {
               rotate: 90,
               transition: {
-                delay: 1,
+                delay: 0.5,
               },
             },
           }}
@@ -211,8 +210,8 @@ const Skills: FC = () => {
         }}
         className="bordered rounded-lg my-4 py-2 w-full relative"
       >
-        <div className="absolute left-0 top-0 w-1/3 h-full bg-gradient-to-r from-black pointer-events-none to-transparent rounded-l-lg z-30" />
-        <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-black pointer-events-none to-transparent rounded-r-lg z-30" />
+        <div className="absolute left-0 top-0 w-1/3 h-full bg-linear-to-r from-mocha-crust pointer-events-none to-transparent rounded-l-lg z-30" />
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-linear-to-l from-mocha-crust pointer-events-none to-transparent rounded-r-lg z-30" />
         {splitEntries.map((entries, index) => {
           const list = entries.map((entry, index) => (
             <Skill key={index} entry={entry} />

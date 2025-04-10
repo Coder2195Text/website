@@ -1,6 +1,73 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' layer(base);
+
+@theme inline {
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee2: marquee2 25s linear infinite;
+  --animate-marquee3: marquee3 25s linear infinite;
+  --animate-marquee4: marquee4 25s linear infinite;
+
+  --spacing: 0.25rem;
+
+  --color-mocha-rosewater: #f5e0dc;
+  --color-mocha-flamingo: #f2cdcd;
+  --color-mocha-pink: #f5c2e7;
+  --color-mocha-mauve: #cba6f7;
+  --color-mocha-red: #f38ba8;
+  --color-mocha-maroon: #eba0ac;
+  --color-mocha-peach: #fab387;
+  --color-mocha-yellow: #f9e2af;
+  --color-mocha-green: #a6e3a1;
+  --color-mocha-teal: #94e2d5;
+  --color-mocha-sky: #89dceb;
+  --color-mocha-sapphire: #74c7ec;
+  --color-mocha-blue: #89b4fa;
+  --color-mocha-lavender: #b4befe;
+  --color-mocha-text: #cdd6f4;
+  --color-mocha-subtext1: #bac2de;
+  --color-mocha-subtext0: #a6adc8;
+  --color-mocha-overlay2: #9399b2;
+  --color-mocha-overlay1: #7f849c;
+  --color-mocha-overlay0: #6c7086;
+  --color-mocha-surface2: #585b70;
+  --color-mocha-surface1: #45475a;
+  --color-mocha-surface0: #313244;
+  --color-mocha-base: #1e1e2e;
+  --color-mocha-mantle: #181825;
+  --color-mocha-crust: #11111b;
+
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-space-mono);
+
+  --border-width-1: 1px;
+  --border-width-0_5: 0.5px;
+
+  --breakpoint-xs: 480px;
+  --breakpoint-xxs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 800px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1500px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-mocha-overlay0, currentcolor);
+  }
+}
 
 @keyframes marquee {
   0% {
@@ -48,7 +115,7 @@
 }
 
 * {
-  @apply border-gray-500/50 tracking-tight;
+  @apply border-mocha-overlay0 tracking-tight;
 }
 
 h1 {
@@ -76,16 +143,16 @@ h6 {
 }
 
 body {
-  @apply bg-[#0a0a0a] text-[#ededed] font-sans;
+  @apply bg-mocha-base text-mocha-text font-sans;
 }
 
 .bordered,
 .button {
-  @apply border-1;
+  @apply border-0.5;
 }
 
 .button {
-  @apply bg-gray-500 bg-opacity-0 hover:bg-opacity-40 active:bg-opacity-30 transition-colors duration-300;
+  @apply bg-mocha-surface0 hover:border-mocha-lavender hover:bg-mocha-overlay0/50 active:bg-mocha-overlay0/40 active:border-mocha-mauve transition-colors duration-300;
 }
 
 .link {
@@ -100,5 +167,5 @@ body {
 .link:hover,
 .link:focus {
   background-size: 0 0.1em, 100% 0.1em;
-  @apply text-[#cba6f7];
+  @apply text-mocha-lavender;
 }

@@ -12,7 +12,7 @@ const Splash: FC = () => {
     <AnimatePresence>
       {!loaded && (
         <motion.div
-          className="fixed w-full h-full z-50 top-0 flex justify-center items-center bg-black"
+          className="fixed w-full h-full z-50 top-0 flex justify-center items-center bg-mocha-base"
           initial={{
             opacity: 1,
           }}

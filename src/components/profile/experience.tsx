@@ -80,7 +80,7 @@ const ExperienceItem: FC<{
 }> = ({ experience, index }) => {
   return (
     <motion.div
-      className="p-4 rounded-md bordered"
+      className="p-4 rounded-md bordered bg-mocha-surface0"
       variants={{
         hidden: {
           opacity: 0,
@@ -122,7 +122,9 @@ const Experience: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+
+      viewport={{ once: true, amount: 0.5 }}
+
       variants={{
         hidden: {
           opacity: 0,
@@ -133,11 +135,10 @@ const Experience: FC = () => {
           y: 0,
           transition: {
             type: "spring",
-            delay: 0.5,
           },
         },
       }}
-      className="my-10"
+      className="min-h-screen"
     >
       <h3 className="flex">
         Experience & Certifications
@@ -150,7 +151,7 @@ const Experience: FC = () => {
             visible: {
               rotate: 90,
               transition: {
-                delay: 1,
+                delay: 0.5,
               },
             },
           }}
@@ -158,7 +159,7 @@ const Experience: FC = () => {
           <IoChevronForwardSharp className="w-8 h-8 mx-4" />
         </motion.div>
       </h3>{" "}
-      <div className=" rounded-lg my-4 flex gap-2 flex-col w-full relative  overflow-visible">
+      <div className=" rounded-lg my-4 flex gap-4 flex-col w-full relative  overflow-visible">
         {EXPERIENCES.map((experience, index) => (
           <ExperienceItem key={index} experience={experience} index={index} />
         ))}

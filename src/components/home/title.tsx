@@ -9,14 +9,14 @@ const Title: FC = () => {
   return (
     <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
       Hello, I&apos;m{" "}
-      <span className="font-mono bordered p-2 rounded-lg bg-zinc-800">
+      <span className="font-mono bordered p-2 rounded-lg bg-mocha-mantle">
         {loaded && (
           <TypewriterComponent
             options={{
               strings: "Coder2195",
               deleteSpeed: 100000000,
               autoStart: true,
-              cursorClassName: "Typewriter__cursor !-mx-2.5",
+              cursorClassName: "Typewriter__cursor -mx-2.5!",
             }}
           />
         )}
