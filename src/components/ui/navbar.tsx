@@ -51,7 +51,7 @@ const Navbar: FC = () => {
   return (
     <div className="fixed w-full p-2 top-0 z-40">
       <motion.nav
-        className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden backdrop-blur-md"
+        className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden items-center bg-mocha-base/50 backdrop-blur-md"
         initial={{
           scale: 2,
           opacity: 0,
@@ -69,10 +69,10 @@ const Navbar: FC = () => {
         <Link href="/">
           <Image
             src="/icon.png"
-            width={36}
-            height={36}
+            width={40}
+            height={40}
             alt=""
-            className="w-9 h-9 rounded-md bordered"
+            className="w-10 h-10 rounded-md bordered"
           />
         </Link>
         <div className="flex flex-1 justify-end">
@@ -80,7 +80,7 @@ const Navbar: FC = () => {
             <Link
               href={link.href}
               key={link.name}
-              className="flex gap-1 justify-end items-end button  p-1 m-1 rounded-md"
+              className="flex gap-1 justify-end items-center button bg-transparent p-1 m-1 rounded-md"
             >
               <link.icon className="w-5 h-5" />
               <span className="text-sm hidden xs:inline-block">

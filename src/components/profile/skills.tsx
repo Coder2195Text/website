@@ -151,7 +151,6 @@ const Skills: FC = () => {
 
   const splitEntries = useMemo(() => shuffleAndSplit(SKILLS_LIST), []);
 
-  console.log(splitEntries);
 
   if (!loaded) return;
 
@@ -159,7 +158,7 @@ const Skills: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.25 }}
       variants={{
         hidden: {
           opacity: 0,

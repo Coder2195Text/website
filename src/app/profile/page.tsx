@@ -10,10 +10,8 @@ export const metadata: Metadata = {
 };
 
 const Profile: FC = () => {
-
-
   return (
-    <main>
+    <main className="">
       <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
         Profile
       </h1>

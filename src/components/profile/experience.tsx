@@ -84,10 +84,10 @@ const ExperienceItem: FC<{
       variants={{
         hidden: {
           opacity: 0,
-          scale: 0,
+          scaleY: 0,
         },
         visible: {
-          scale: 1,
+          scaleY: 1,
           opacity: 1,
 
           transition: {
@@ -123,7 +123,7 @@ const Experience: FC = () => {
       initial="hidden"
       whileInView="visible"
 
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.25 }}
 
       variants={{
         hidden: {
@@ -141,9 +141,9 @@ const Experience: FC = () => {
       className="min-h-screen"
     >
       <h3 className="flex">
-        Experience & Certifications
+        Experience &amp; Certifications
         <motion.div
-          className="inline-block "
+          className="inline-block"
           variants={{
             hidden: {
               rotate: 0,

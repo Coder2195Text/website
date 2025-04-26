@@ -2243,7 +2243,7 @@ export type Project = Entity & Node & {
   /** Get the document in other stages */
   documentInStages: Array<Project>;
   /** location to be embed */
-  embed: Scalars['String']['output'];
+  embed?: Maybe<Scalars['String']['output']>;
   /** short desc */
   excerpt?: Maybe<Scalars['String']['output']>;
   featured: Scalars['Boolean']['output'];
@@ -2251,12 +2251,13 @@ export type Project = Entity & Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  /** Github repo */
+  link: Scalars['String']['output'];
+  projectType: ProjectType;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  /** Github repo */
-  repo?: Maybe<Scalars['String']['output']>;
   scheduledIn: Array<ScheduledOperation>;
   /** Slug for my project */
   slug: Scalars['String']['output'];
@@ -2350,10 +2351,11 @@ export type ProjectCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   date: Scalars['Date']['input'];
   description: Scalars['RichTextAST']['input'];
-  embed: Scalars['String']['input'];
+  embed?: InputMaybe<Scalars['String']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featured: Scalars['Boolean']['input'];
-  repo?: InputMaybe<Scalars['String']['input']>;
+  link: Scalars['String']['input'];
+  projectType: ProjectType;
   slug: Scalars['String']['input'];
   title: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2487,6 +2489,32 @@ export type ProjectManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  link_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  link_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  link_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  link_starts_with?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<ProjectType>;
+  /** All values that are contained in given list. */
+  projectType_in?: InputMaybe<Array<InputMaybe<ProjectType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  projectType_not?: InputMaybe<ProjectType>;
+  /** All values that are not contained in given list. */
+  projectType_not_in?: InputMaybe<Array<InputMaybe<ProjectType>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2503,25 +2531,6 @@ export type ProjectManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   publishedBy?: InputMaybe<UserWhereInput>;
-  repo?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  repo_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  repo_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  repo_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  repo_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  repo_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  repo_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  repo_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  repo_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  repo_starts_with?: InputMaybe<Scalars['String']['input']>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -2594,16 +2603,24 @@ export enum ProjectOrderByInput {
   FeaturedDesc = 'featured_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
+  ProjectTypeAsc = 'projectType_ASC',
+  ProjectTypeDesc = 'projectType_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
-  RepoAsc = 'repo_ASC',
-  RepoDesc = 'repo_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export enum ProjectType {
+  Coding = 'coding',
+  Other = 'other',
+  Video = 'video'
 }
 
 export type ProjectUpdateInput = {
@@ -2613,7 +2630,8 @@ export type ProjectUpdateInput = {
   embed?: InputMaybe<Scalars['String']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
-  repo?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<ProjectType>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
@@ -2641,7 +2659,8 @@ export type ProjectUpdateManyInput = {
   embed?: InputMaybe<Scalars['String']['input']>;
   excerpt?: InputMaybe<Scalars['String']['input']>;
   featured?: InputMaybe<Scalars['Boolean']['input']>;
-  repo?: InputMaybe<Scalars['String']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<ProjectType>;
   title?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2799,6 +2818,32 @@ export type ProjectWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  link?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  link_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  link_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  link_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  link_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  link_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  link_starts_with?: InputMaybe<Scalars['String']['input']>;
+  projectType?: InputMaybe<ProjectType>;
+  /** All values that are contained in given list. */
+  projectType_in?: InputMaybe<Array<InputMaybe<ProjectType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  projectType_not?: InputMaybe<ProjectType>;
+  /** All values that are not contained in given list. */
+  projectType_not_in?: InputMaybe<Array<InputMaybe<ProjectType>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2815,25 +2860,6 @@ export type ProjectWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   publishedBy?: InputMaybe<UserWhereInput>;
-  repo?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  repo_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  repo_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  repo_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  repo_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  repo_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  repo_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  repo_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  repo_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  repo_starts_with?: InputMaybe<Scalars['String']['input']>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -4935,6 +4961,7 @@ export type ResolversTypes = {
   ProjectEdge: ResolverTypeWrapper<Omit<ProjectEdge, 'node'> & { node: ResolversTypes['Project'] }>;
   ProjectManyWhereInput: ProjectManyWhereInput;
   ProjectOrderByInput: ProjectOrderByInput;
+  ProjectType: ProjectType;
   ProjectUpdateInput: ProjectUpdateInput;
   ProjectUpdateManyInlineInput: ProjectUpdateManyInlineInput;
   ProjectUpdateManyInput: ProjectUpdateManyInput;
@@ -5424,14 +5451,15 @@ export type ProjectResolvers<ContextType = any, ParentType extends ResolversPare
   date?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['RichText'], ParentType, ContextType>;
   documentInStages?: Resolver<Array<ResolversTypes['Project']>, ParentType, ContextType, RequireFields<ProjectDocumentInStagesArgs, 'includeCurrent' | 'inheritLocale' | 'stages'>>;
-  embed?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  embed?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   excerpt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   featured?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   history?: Resolver<Array<ResolversTypes['Version']>, ParentType, ContextType, RequireFields<ProjectHistoryArgs, 'limit' | 'skip'>>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  link?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  projectType?: Resolver<ResolversTypes['ProjectType'], ParentType, ContextType>;
   publishedAt?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
   publishedBy?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, Partial<ProjectPublishedByArgs>>;
-  repo?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   scheduledIn?: Resolver<Array<ResolversTypes['ScheduledOperation']>, ParentType, ContextType, Partial<ProjectScheduledInArgs>>;
   slug?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   stage?: Resolver<ResolversTypes['Stage'], ParentType, ContextType>;
