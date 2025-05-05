@@ -32,6 +32,7 @@ export const GET_PROJECT = graphql(`
       description {
         markdown
       }
+      embed
       link
 
       coverImage {

@@ -149,14 +149,14 @@ body {
 
 .bordered,
 .button {
-  @apply border-0.5 border-mocha-overlay2;
+  @apply border-0.5 border-mocha-overlay0;
 }
 
 .button {
   @apply bg-mocha-surface0  hover:border-mocha-lavender hover:bg-mocha-overlay0/50 active:bg-mocha-overlay0/40 active:border-mocha-mauve transition-colors duration-300;
 }
 
-.link {
+.underline-link {
   background: linear-gradient(to right, #fff, #fff),
     linear-gradient(to right, #cba6f7, #b4befe);
   background-size: 100% 0.1em, 0 0.1em;
@@ -165,8 +165,8 @@ body {
   @apply transition-all duration-500;
 }
 
-.link:hover,
-.link:focus {
+.underline-link:hover,
+.underline-link:focus {
   background-size: 0 0.1em, 100% 0.1em;
   @apply text-mocha-lavender;
 }

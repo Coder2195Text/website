@@ -11,7 +11,7 @@
   "dependencies": {
     "graphql": "^16.10.0",
     "graphql-request": "^7.1.2",
-    "motion": "^11.18.1",
+    "motion": "12.9.4",
     "next": "15.1.5",
     "next-transition-router": "^0.2.7",
     "react": "^19.0.0",

@@ -1,7 +1,7 @@
 import { ProjectData } from "@/app/projects/page";
 import { ProjectType } from "@/graphql/generated/graphql";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/ui/link";
 import { FC } from "react";
 import { IconType } from "react-icons";
 import { FaCode } from "react-icons/fa";

@@ -23,9 +23,7 @@ const ProjectsPage: FC = async () => {
 
   return (
     <main>
-      <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
-        Projects
-      </h1>
+      <h1 className="py-4 flex gap-3 items-center flex-wrap">Projects</h1>
       <div className="my-4 mb-8">
         Some of the stuff I have been working on...
       </div>

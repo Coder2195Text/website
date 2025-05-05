@@ -21,15 +21,34 @@ const ProjectPage: FC<Params> = async ({ params }) => {
   return (
     <main>
       <div className="absolute left-0 top-0 w-full aspect-video flex items-center justify-center min-h-96 max-h-screen">
-        <h1 className="font-light p-4 rounded-lg flex gap-3 items-center flex-wrap bg-mocha-overlay0/50 z-10  backdrop-blur-lg border-4 border-mocha-mauve">
+        <h1 className="p-4 rounded-lg flex gap-3 items-center flex-wrap bg-mocha-overlay0/50 z-10  backdrop-blur-lg border-4 border-mocha-mauve">
           {project.title}
         </h1>
         <Image
           src={project.coverImage?.url || "https://picsum.photos/1280/720"}
           alt=""
           fill
-          className="object-cover object-center"
+          className="object-cover object-center -z-10 mask-t-from-10%"
         />
+      </div>
+      <div className="mt-[100vh] grid grid-cols-2 gap-4">
+        {project.embed && (
+          <div>
+            <h1 className="my-4">Preview</h1>
+            <iframe
+              src={project.embed}
+              className="w-full aspect-video rounded-lg bordered"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+        <div>
+          <h1 className="my-4">Description</h1>
+          <div className="bordered rounded-lg w-full p-2">
+            {project.description.markdown}
+          </div>
+        </div>
       </div>
     </main>
   );

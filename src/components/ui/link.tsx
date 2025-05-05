@@ -1,18 +1,32 @@
+"use client";
+
 import NextLink, { LinkProps } from "next/link";
-import { FC, HTMLProps } from "react";
+import { FC, HTMLProps, ReactNode } from "react";
 import { BiLinkExternal } from "react-icons/bi";
+import { useTooltip } from "../context/tooltip";
 
 const Link: FC<
   LinkProps &
     HTMLProps<HTMLAnchorElement> & {
       external?: boolean;
+      underline?: boolean;
+      tooltip?: ReactNode;
     }
-> = ({ children, href, external, className, ...props }) => {
+> = ({ children, href, external, className, underline, tooltip, ...props }) => {
+  const { setTooltip } = useTooltip();
   return (
     <NextLink
       href={href}
       target={external ? "_blank" : undefined}
-      className={`link ${className}`}
+      className={`${underline ? "underline-link" : ""} ${className}`}
+      onMouseEnter={() => {
+        if (!tooltip) return;
+        setTooltip(tooltip);
+      }}
+      onMouseLeave={() => {
+        if (!tooltip) return;
+        setTooltip(null);
+      }}
       {...props}
     >
       {children} {external && <BiLinkExternal className="inline" />}

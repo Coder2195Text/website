@@ -7,7 +7,7 @@ import { useLoaded } from "../context/loaded";
 const Title: FC = () => {
   const { loaded } = useLoaded();
   return (
-    <h1 className="font-light  py-4 flex gap-3 items-center flex-wrap">
+    <h1 className=" py-4 flex gap-3 items-center flex-wrap">
       Hello, I&apos;m{" "}
       <span className="font-mono border-4 border-mocha-mauve p-2 rounded-lg bg-mocha-mantle ">
         {loaded && (

@@ -29,27 +29,30 @@ const EXPERIENCES: Experience[] = [
     title: "Pathfinders CS4ALL Internship",
     company: (
       <>
-        <Link href="https://cerbrec.com/" external>Cerbrec</Link>
+        <Link href="https://cerbrec.com/" external underline>
+          Cerbrec
+        </Link>
       </>
     ),
     date: "Spring 2025",
-    description: "We worked on helping improve their AI app that is used in ethical means. We primarily worked on organizing graph features and designing an algorithm and a explorer to test these out.",
+    description:
+      "We worked on helping improve their AI app that is used in ethical means. We primarily worked on organizing graph features and designing an algorithm and a explorer to test these out.",
   },
   {
     type: ExperienceType.INTERNSHIP,
     title: "Summer Design Institute Game Design Internship",
     company: (
       <>
-        <Link href="https://www.schools.nyc.gov/" external>
+        <Link href="https://www.schools.nyc.gov/" external underline>
           NYCDOE
         </Link>
         {" + "}
-        <Link href="https://www.schools.nyc.gov/" external>
+        <Link href="https://www.schools.nyc.gov/" external underline>
           MetaBronx
         </Link>
         {" + "}
 
-        <Link href="https://www.schools.nyc.gov/" external>
+        <Link href="https://www.schools.nyc.gov/" external underline>
           The Glass Files
         </Link>
       </>
@@ -62,7 +65,7 @@ const EXPERIENCES: Experience[] = [
     title: "Founder & Developer of Action",
     company: (
       <>
-        <Link href="https://bthsaction.org/" external>
+        <Link href="https://bthsaction.org/" external underline>
           BTHS Action
         </Link>
       </>
@@ -122,9 +125,7 @@ const Experience: FC = () => {
     <motion.div
       initial="hidden"
       whileInView="visible"
-
       viewport={{ once: true, amount: 0.25 }}
-
       variants={{
         hidden: {
           opacity: 0,

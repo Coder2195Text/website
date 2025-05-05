@@ -151,7 +151,6 @@ const Skills: FC = () => {
 
   const splitEntries = useMemo(() => shuffleAndSplit(SKILLS_LIST), []);
 
-
   if (!loaded) return;
 
   return (
@@ -207,31 +206,34 @@ const Skills: FC = () => {
             },
           },
         }}
-        className="bordered rounded-lg my-4 py-2 w-full relative"
+        // use commented out code for masking but in tailwindcss
+        className="bordered rounded-lg overflow-hidden"
       >
-        <div className="absolute left-0 top-0 w-1/3 h-full bg-linear-to-r from-mocha-crust pointer-events-none to-transparent rounded-l-lg z-30" />
-        <div className="absolute right-0 top-0 w-1/3 h-full bg-linear-to-l from-mocha-crust pointer-events-none to-transparent rounded-r-lg z-30" />
-        {splitEntries.map((entries, index) => {
-          const list = entries.map((entry, index) => (
-            <Skill key={index} entry={entry} />
-          ));
-          return (
-            <div key={index} className=" overflow-x-hidden flex relative">
-              <div
-                className={`${index % 2 === 0 ? "animate-marquee" : "animate-marquee3"
+        <div className="my-4 py-2 w-full relative mask-x-from-70% mask-x--to-100% overflow-hidden">
+          {splitEntries.map((entries, index) => {
+            const list = entries.map((entry, index) => (
+              <Skill key={index} entry={entry} />
+            ));
+            return (
+              <div key={index} className=" overflow-x-hidden flex relative">
+                <div
+                  className={`${
+                    index % 2 === 0 ? "animate-marquee" : "animate-marquee3"
                   } whitespace-nowrap`}
-              >
-                {list}
-              </div>
-              <div
-                className={`absolute top-0 ${index % 2 === 0 ? "animate-marquee2" : "animate-marquee4"
+                >
+                  {list}
+                </div>
+                <div
+                  className={`absolute top-0 ${
+                    index % 2 === 0 ? "animate-marquee2" : "animate-marquee4"
                   } whitespace-nowrap`}
-              >
-                {list}
+                >
+                  {list}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </motion.div>
     </motion.div>
   );
