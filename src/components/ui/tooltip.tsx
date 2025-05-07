@@ -9,7 +9,7 @@ type Orientations = "ne" | "nw" | "se" | "sw";
 const Tooltip: FC = () => {
   const { tooltip } = useTooltip();
   const [position, setPosition] = useState([0, 0]);
-  const [orientation, setOrientation] = useState<Orientations>("ne");
+  const [orientation, setOrientation] = useState<Orientations>("se");
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -18,11 +18,11 @@ const Tooltip: FC = () => {
       setOrientation(
         e.clientX < innerWidth / 2
           ? e.clientY < innerHeight / 2
-            ? "nw"
-            : "sw"
+            ? "se"
+            : "ne"
           : e.clientY < innerHeight / 2
-          ? "ne"
-          : "se"
+          ? "sw"
+          : "nw"
       );
     };
 
@@ -42,12 +42,24 @@ const Tooltip: FC = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed z-50 top-0 left-0 p-2 bg-mocha-surface0 border-4 border-mocha-sapphire rounded-lg pointer-events-none"
+          className="pointer-events-none fixed z-50 top-0 left-0 "
           style={{
-            translate: `${position[0]}px ${position[1]}px`,
+            translate: `calc(${position[0]}px) ${position[1]}px`,
           }}
         >
-          {tooltip || "lorem ipsum dolor sit amet"}
+          <div
+            className={`${
+              orientation == "nw" || orientation == "sw"
+                ? "-translate-x-full"
+                : ""
+            } ${
+              orientation == "ne" || orientation == "nw"
+                ? "-translate-y-full"
+                : ""
+            } p-2 bg-mocha-surface0 border-4 border-mocha-sapphire rounded-lg pointer-events-none transition-transform duration-300 `}
+          >
+            {tooltip || "lorem ipsum dolor sit amet"}
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
