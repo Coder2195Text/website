@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   openGraph: {
     images: "/icon.png",
   },
+  twitter: {
+    card: "summary",
+  },
 };
 
 export default function RootLayout({
