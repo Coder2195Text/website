@@ -1,6 +1,7 @@
 import { GET_PROJECT, GET_PROJECT_METADATA, hygraph } from "@/graphql";
 import { Metadata } from "next";
 import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import { Twitter } from "next/dist/lib/metadata/types/twitter-types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FC } from "react";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const title = `Project: ${project.title} | Coder2195`;
   const description = project.excerpt || "Check out this cool project I made!";
-  const openGraph: OpenGraph =
+  const video: OpenGraph =
     project.projectType == "video" && project.embed
       ? {
           type: "video.other",
@@ -40,17 +41,30 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
             },
           ],
         }
-      : {
-          images: [project.coverImage?.url || "/icon.png"],
-        };
+      : {};
+
+  const twitter: Twitter =
+    project.projectType == "video" && project.embed
+      ? {
+          card: "player",
+          players: {
+            playerUrl: project.embed,
+            streamUrl: project.embed,
+
+            height: 720,
+            width: 1280,
+          },
+        }
+      : {};
 
   return {
     title,
     description,
-    openGraph,
-    twitter: {
-      card: "summary_large_image",
+    openGraph: {
+      images: [project.coverImage?.url || "/icon.png"],
+      ...video,
     },
+    twitter,
   };
 }
 
