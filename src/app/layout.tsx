@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     images: "/icon.png",
     type: "article",
   },
+  twitter: {
+    card: "summary",
+  },
 };
 
 export default function RootLayout({
