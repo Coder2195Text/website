@@ -15,11 +15,13 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 type Documents = {
     "\n  query GetProjects {\n    projects {\n      id\n      title\n      projectType\n      date\n      featured\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": typeof types.GetProjectsDocument,
-    "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": typeof types.GetProjectDocument,
+    "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      excerpt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": typeof types.GetProjectDocument,
+    "\n  query GetProjectMetadata($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      createdAt\n      excerpt\n      coverImage {\n        url\n      }\n    }\n  }\n": typeof types.GetProjectMetadataDocument,
 };
 const documents: Documents = {
     "\n  query GetProjects {\n    projects {\n      id\n      title\n      projectType\n      date\n      featured\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": types.GetProjectsDocument,
-    "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": types.GetProjectDocument,
+    "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      excerpt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n": types.GetProjectDocument,
+    "\n  query GetProjectMetadata($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      createdAt\n      excerpt\n      coverImage {\n        url\n      }\n    }\n  }\n": types.GetProjectMetadataDocument,
 };
 
 /**
@@ -43,7 +45,11 @@ export function graphql(source: "\n  query GetProjects {\n    projects {\n      
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n"): (typeof documents)["\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n"];
+export function graphql(source: "\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      excerpt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n"): (typeof documents)["\n  query GetProject($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      projectType\n      createdAt\n      excerpt\n      updatedAt\n      description {\n        markdown\n      }\n      embed\n      link\n\n      coverImage {\n        url\n      }\n      slug\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetProjectMetadata($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      createdAt\n      excerpt\n      coverImage {\n        url\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetProjectMetadata($slug: String!) {\n    project(where: { slug: $slug }) {\n      id\n      title\n      createdAt\n      excerpt\n      coverImage {\n        url\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

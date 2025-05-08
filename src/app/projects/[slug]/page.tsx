@@ -1,12 +1,41 @@
-import { GET_PROJECT, hygraph } from "@/graphql";
+import { GET_PROJECT, GET_PROJECT_METADATA, hygraph } from "@/graphql";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-export const revalidate = 300;
-
 interface Params {
   params: Promise<{ slug: string }>;
+}
+
+export const revalidate = 300;
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const slug = (await params).slug;
+  const data = await hygraph.request(GET_PROJECT_METADATA, {
+    slug,
+  });
+
+  if (!data.project)
+    return {
+      title: "Project Not Found | Coder2195",
+      description: "Project not found. Broken link?",
+    };
+  const { project } = data;
+
+  const title = `Project: ${project.title} | Coder2195`;
+  const description = project.excerpt || "Check out this cool project I made!";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      images: [project.coverImage?.url || "/icon.png"],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
 }
 
 const ProjectPage: FC<Params> = async ({ params }) => {

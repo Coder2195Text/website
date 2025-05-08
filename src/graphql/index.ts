@@ -28,6 +28,7 @@ export const GET_PROJECT = graphql(`
       title
       projectType
       createdAt
+      excerpt
       updatedAt
       description {
         markdown
@@ -39,6 +40,20 @@ export const GET_PROJECT = graphql(`
         url
       }
       slug
+    }
+  }
+`);
+
+export const GET_PROJECT_METADATA = graphql(`
+  query GetProjectMetadata($slug: String!) {
+    project(where: { slug: $slug }) {
+      id
+      title
+      createdAt
+      excerpt
+      coverImage {
+        url
+      }
     }
   }
 `);
