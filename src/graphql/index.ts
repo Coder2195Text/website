@@ -54,6 +54,8 @@ export const GET_PROJECT_METADATA = graphql(`
       coverImage {
         url
       }
+      embed
+      projectType
     }
   }
 `);

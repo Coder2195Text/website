@@ -24,10 +24,9 @@ export const metadata: Metadata = {
   description: "Coder2195's personal website.",
   icons: "/icon.png",
   openGraph: {
+    siteName: "Coder2195",
     images: "/icon.png",
-  },
-  twitter: {
-    card: "summary",
+    type: "article",
   },
 };
 

@@ -1,5 +1,6 @@
 import { GET_PROJECT, GET_PROJECT_METADATA, hygraph } from "@/graphql";
 import { Metadata } from "next";
+import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { FC } from "react";
@@ -25,13 +26,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const title = `Project: ${project.title} | Coder2195`;
   const description = project.excerpt || "Check out this cool project I made!";
+  const openGraph: OpenGraph =
+    project.projectType == "video" && project.embed
+      ? { videos: project.embed }
+      : {
+          images: [project.coverImage?.url || "/icon.png"],
+        };
 
   return {
     title,
     description,
-    openGraph: {
-      images: [project.coverImage?.url || "/icon.png"],
-    },
+    openGraph,
     twitter: {
       card: "summary_large_image",
     },
