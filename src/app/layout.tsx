@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "Coder2195",
   description: "Coder2195's personal website.",
   icons: "/icon.png",
+  openGraph: {
+    images: "/icon.png",
+  },
 };
 
 export default function RootLayout({
