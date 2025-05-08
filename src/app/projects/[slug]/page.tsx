@@ -1,4 +1,5 @@
 import { GET_PROJECT, GET_PROJECT_METADATA, hygraph } from "@/graphql";
+import { addQueryParams } from "@/utils/url";
 import { Metadata } from "next";
 import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
 import { Twitter } from "next/dist/lib/metadata/types/twitter-types";
@@ -27,14 +28,19 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
   const title = `Project: ${project.title} | Coder2195`;
   const description = project.excerpt || "Check out this cool project I made!";
+  const videoLink =
+    project.embed &&
+    addQueryParams(project.embed, {
+      autoplay: 1,
+    });
   const video: OpenGraph =
-    project.projectType == "video" && project.embed
+    project.projectType == "video" && videoLink
       ? {
           type: "video.other",
           videos: [
             {
-              url: project.embed,
-              secureUrl: project.embed,
+              url: videoLink,
+              secureUrl: videoLink,
               type: "text/html",
               width: 1280,
               height: 720,
@@ -44,12 +50,12 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       : {};
 
   const twitter: Twitter =
-    project.projectType == "video" && project.embed
+    project.projectType == "video" && videoLink
       ? {
           card: "player",
           players: {
-            playerUrl: project.embed,
-            streamUrl: project.embed,
+            playerUrl: videoLink,
+            streamUrl: videoLink,
 
             height: 720,
             width: 1280,
@@ -61,6 +67,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title,
     description,
     openGraph: {
+      siteName: "Coder2195",
       images: [project.coverImage?.url || "/icon.png"],
       ...video,
     },
