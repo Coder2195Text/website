@@ -29,10 +29,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const openGraph: OpenGraph =
     project.projectType == "video" && project.embed
       ? {
-          videos: {
-            url: project.embed,
-            secureUrl: project.embed,
-          },
+          type: "video.other",
+          videos: [
+            {
+              url: project.embed,
+              secureUrl: project.embed,
+              type: "text/html",
+              width: 1280,
+              height: 720,
+            },
+          ],
         }
       : {
           images: [project.coverImage?.url || "/icon.png"],
