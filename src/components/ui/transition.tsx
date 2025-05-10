@@ -1,15 +1,18 @@
 "use client";
-
 import { animate } from "motion/react";
 import { TransitionRouter } from "next-transition-router";
 import { FC, PropsWithChildren, useRef } from "react";
+import { useTransitioning } from "../context/transition";
 
 const PageTransition: FC<PropsWithChildren> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { setTransitioning } = useTransitioning();
   return (
     <TransitionRouter
       auto
       leave={(next) => {
+        setTransitioning(true);
+
         animate(
           ref.current!,
           { opacity: [1, 0] },
@@ -17,6 +20,7 @@ const PageTransition: FC<PropsWithChildren> = ({ children }) => {
         );
       }}
       enter={(next) => {
+        setTransitioning(false);
         animate(
           ref.current!,
           { opacity: [0, 1] },

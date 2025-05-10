@@ -3,13 +3,22 @@
 import { FC, useEffect, useState } from "react";
 import { useTooltip } from "../context/tooltip";
 import { AnimatePresence, motion } from "motion/react";
+import { useTransitioning } from "../context/transition";
 
 type Orientations = "ne" | "nw" | "se" | "sw";
 
 const Tooltip: FC = () => {
-  const { tooltip } = useTooltip();
+  const { tooltip, setTooltip } = useTooltip();
   const [position, setPosition] = useState([0, 0]);
   const [orientation, setOrientation] = useState<Orientations>("se");
+
+  const { transitioning } = useTransitioning();
+
+  useEffect(() => {
+    if (transitioning) {
+      setTooltip("");
+    }
+  }, [transitioning, setTooltip]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -26,10 +35,10 @@ const Tooltip: FC = () => {
       );
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("pointermove", handleMouseMove);
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("pointermove", handleMouseMove);
     };
   }, []);
 
@@ -56,7 +65,7 @@ const Tooltip: FC = () => {
               orientation == "ne" || orientation == "nw"
                 ? "-translate-y-full"
                 : ""
-            } p-2 bg-mocha-surface0 border-4 border-mocha-sapphire rounded-lg pointer-events-none transition-transform duration-300 `}
+            } p-2 max-w-[50vw] bg-mocha-surface0 border-2 border-mocha-sapphire rounded-lg pointer-events-none transition-transform duration-300 text-sm`}
           >
             {tooltip || "lorem ipsum dolor sit amet"}
           </div>

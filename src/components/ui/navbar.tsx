@@ -2,8 +2,8 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
-import { FC } from "react";
+import Link from "@/components/ui/link";
+import { FC, ReactNode } from "react";
 import { IconType } from "react-icons";
 import { BiHomeAlt2, BiFolder } from "react-icons/bi";
 import { FaRegNewspaper } from "react-icons/fa";
@@ -15,6 +15,7 @@ export type NavLink = {
   href: string;
   icon: IconType;
   description: string;
+  description2?: ReactNode;
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -23,24 +24,28 @@ export const NAV_LINKS: NavLink[] = [
     href: "/",
     icon: BiHomeAlt2,
     description: "Home page, with links to other pages.",
+    description2: <>This is the page you are on, silly goose! 😝</>,
   },
   {
     name: "Profile",
     href: "/profile",
     icon: IoPersonCircle,
     description: "Learn more about me and my skills.",
+    description2: <>Amber has a lot of skill to show you! ‼️</>,
   },
   {
     name: "Projects",
     href: "/projects",
     icon: BiFolder,
     description: "Projects and repositories.",
+    description2: <>This the juicy stuff you looking for... 🔥</>,
   },
   {
     name: "Blog",
     href: "/blog",
     icon: FaRegNewspaper,
     description: "Blog posts and articles.",
+    description2: <>Oh, uh this is just my yapping space. 🙃</>,
   },
 ];
 
@@ -51,7 +56,7 @@ const Navbar: FC = () => {
   return (
     <div className="fixed w-full p-2 top-0 z-40">
       <motion.nav
-        className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden items-center bg-mocha-base/50 backdrop-blur-md"
+        className="w-full max-w-5xl bordered mx-auto p-2 rounded-lg flex overflow-hidden items-center bg-mocha-base/50 backdrop-blur-md select-none"
         initial={{
           scale: 2,
           opacity: 0,
@@ -80,6 +85,7 @@ const Navbar: FC = () => {
             <Link
               href={link.href}
               key={link.name}
+              tooltip={link.description}
               className="flex gap-1 justify-end items-center button bg-transparent p-1 m-1 rounded-md"
             >
               <link.icon className="w-5 h-5" />

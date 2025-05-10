@@ -153,6 +153,7 @@ body {
 }
 
 .button {
+  -webkit-touch-callout: none;
   @apply bg-mocha-surface0  hover:border-mocha-lavender hover:bg-mocha-overlay0/50 active:bg-mocha-overlay0/40 active:border-mocha-mauve transition-colors duration-300;
 }
 

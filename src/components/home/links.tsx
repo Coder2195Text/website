@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/link";
 import { FC } from "react";
 import { NAV_LINKS, NavLink } from "../ui/navbar";
 import { IoChevronForwardSharp } from "react-icons/io5";
@@ -10,7 +10,7 @@ import { useLoaded } from "../context/loaded";
 const HomeLink: FC<{
   link: NavLink;
   idx: number;
-}> = ({ link: { href, name, description }, idx }) => {
+}> = ({ link: { href, name, description, description2 }, idx }) => {
   return (
     <motion.span
       initial={{
@@ -27,6 +27,7 @@ const HomeLink: FC<{
     >
       <Link
         href={href}
+        tooltip={description2}
         className="group block font-extralight text-2xl p-2 my-4 rounded-md button"
       >
         <div className="flex items-center">

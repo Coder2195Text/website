@@ -4,6 +4,7 @@ import NextLink, { LinkProps } from "next/link";
 import { FC, HTMLProps, ReactNode } from "react";
 import { BiLinkExternal } from "react-icons/bi";
 import { useTooltip } from "../context/tooltip";
+import { useTransitioning } from "../context/transition";
 
 const Link: FC<
   LinkProps &
@@ -14,17 +15,24 @@ const Link: FC<
     }
 > = ({ children, href, external, className, underline, tooltip, ...props }) => {
   const { setTooltip } = useTooltip();
+  const { transitioning } = useTransitioning();
+
   return (
     <NextLink
       href={href}
       target={external ? "_blank" : undefined}
       className={`${underline ? "underline-link" : ""} ${className}`}
-      onMouseEnter={() => {
-        if (!tooltip) return;
+      onPointerOverCapture={() => {
+        if (!tooltip || transitioning) return;
+
         setTooltip(tooltip);
       }}
-      onMouseLeave={() => {
-        if (!tooltip) return;
+      onPointerCancelCapture={() => {
+        if (!tooltip || transitioning) return;
+        setTooltip(null);
+      }}
+      onPointerOutCapture={() => {
+        if (!tooltip || transitioning) return;
         setTooltip(null);
       }}
       {...props}
