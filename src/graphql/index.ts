@@ -12,6 +12,7 @@ export const GET_PROJECTS = graphql(`
       title
       projectType
       date
+      excerpt
       featured
       coverImage {
         url

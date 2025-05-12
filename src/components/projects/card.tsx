@@ -31,6 +31,8 @@ const ProjectCard: FC<{ project: ProjectData }> = ({ project }) => {
     <Link
       className="button rounded-lg overflow-hidden"
       href={`/projects/${project.slug}`}
+      // null doesn't go into the aria-description, use !
+      aria-description={project.excerpt!}
     >
       <figure className="aspect-video relative">
         <Image

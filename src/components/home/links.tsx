@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/components/ui/link";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { NAV_LINKS, NavLink } from "../ui/navbar";
 import { IoChevronForwardSharp } from "react-icons/io5";
 import { easeInOut, motion } from "motion/react";
@@ -10,12 +10,14 @@ import { useLoaded } from "../context/loaded";
 const HomeLink: FC<{
   link: NavLink;
   idx: number;
-}> = ({ link: { href, name, description, description2 }, idx }) => {
+}> = ({ link: { href, name, description, tooltip: description2 }, idx }) => {
+  const [ready, setReady] = useState(false);
   return (
     <motion.span
       initial={{
         opacity: 0,
       }}
+      onAnimationComplete={() => setReady(true)}
       animate={{
         opacity: 1,
         transition: {
@@ -27,7 +29,7 @@ const HomeLink: FC<{
     >
       <Link
         href={href}
-        tooltip={description2}
+        aria-description={ready ? description2 : ""}
         className="group block font-extralight text-2xl p-2 my-4 rounded-md button"
       >
         <div className="flex items-center">

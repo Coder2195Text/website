@@ -1,14 +1,13 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import { useTooltip } from "../context/tooltip";
 import { AnimatePresence, motion } from "motion/react";
 import { useTransitioning } from "../context/transition";
 
 type Orientations = "ne" | "nw" | "se" | "sw";
 
 const Tooltip: FC = () => {
-  const { tooltip, setTooltip } = useTooltip();
+  const [tooltip, setTooltip] = useState<string | null>();
   const [position, setPosition] = useState([0, 0]);
   const [orientation, setOrientation] = useState<Orientations>("se");
 
@@ -18,6 +17,17 @@ const Tooltip: FC = () => {
     if (transitioning) {
       setTooltip("");
     }
+
+    const intvl = setInterval(() => {
+      if (transitioning) return;
+      const hovered = document.querySelector("[aria-description]:hover");
+
+      setTooltip(hovered?.ariaDescription || null);
+    }, 200);
+
+    return () => {
+      clearInterval(intvl);
+    };
   }, [transitioning, setTooltip]);
 
   useEffect(() => {
@@ -46,7 +56,7 @@ const Tooltip: FC = () => {
 
   return (
     <AnimatePresence>
-      {tooltip && (
+      {tooltip && typeof tooltip !== "boolean" && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

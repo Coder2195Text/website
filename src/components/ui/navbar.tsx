@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "@/components/ui/link";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { IconType } from "react-icons";
 import { BiHomeAlt2, BiFolder } from "react-icons/bi";
 import { FaRegNewspaper } from "react-icons/fa";
@@ -15,7 +15,7 @@ export type NavLink = {
   href: string;
   icon: IconType;
   description: string;
-  description2?: ReactNode;
+  tooltip?: string;
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -24,28 +24,28 @@ export const NAV_LINKS: NavLink[] = [
     href: "/",
     icon: BiHomeAlt2,
     description: "Home page, with links to other pages.",
-    description2: <>This is the page you are on, silly goose! 😝</>,
+    tooltip: "This is the page you are on, silly goose! 😝",
   },
   {
     name: "Profile",
     href: "/profile",
     icon: IoPersonCircle,
     description: "Learn more about me and my skills.",
-    description2: <>Amber has a lot of skill to show you! ‼️</>,
+    tooltip: "Amber has a lot of skill to show you! ‼️",
   },
   {
     name: "Projects",
     href: "/projects",
     icon: BiFolder,
     description: "Projects and repositories.",
-    description2: <>This the juicy stuff you looking for... 🔥</>,
+    tooltip: "This the juicy stuff you looking for... 🔥",
   },
   {
     name: "Blog",
     href: "/blog",
     icon: FaRegNewspaper,
     description: "Blog posts and articles.",
-    description2: <>Oh, uh this is just my yapping space. 🙃</>,
+    tooltip: "Oh, uh this is just my yapping space. 🙃",
   },
 ];
 
@@ -85,7 +85,7 @@ const Navbar: FC = () => {
             <Link
               href={link.href}
               key={link.name}
-              tooltip={link.description}
+              aria-description={link.description}
               className="flex gap-1 justify-end items-center button bg-transparent p-1 m-1 rounded-md"
             >
               <link.icon className="w-5 h-5" />
